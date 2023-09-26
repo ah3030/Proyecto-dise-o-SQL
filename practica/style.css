@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .container {
+    width: 400px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    position: relative;
+  }
+
+  .hexagon {
+    position: absolute;
+    top: -60px;
+    left: calc(50% - 30px);
+    width: 60px;
+    height: 103.92px;
+    background-color: #4caf50;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
+
+  .hexagon:before, .hexagon:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+  }
+
+  .hexagon:before {
+    bottom: 100%;
+    border-bottom: 51.96px solid #4caf50;
+  }
+
+  .hexagon:after {
+    top: 100%;
+    width: 0;
+    border-top: 51.96px solid #4caf50;
+  }
+
+  h2 {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  .form-group button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .form-group button:hover {
+    background-color: #45a049;
+  }
+
+  .options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .options label {
+    font-size: 14px;
+    color: #555;
+  }

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style1.css" />
+    <script src="index.js"></script>
+  </head>
+  <body>
+    
+    <div class="account-container">
+           <h1>Cuenta bancaria</h1>
+           <label class="labels">Nombre de usuario:</label>
+           <p id="nombre-usuario"></p>
+           <label class="labels">Numero de cuenta:</label>
+           <p id="cuenta"></p>
+           <label class="labels">Saldo</label>
+           <div class="balance" id="balance"> $100</div>
+           <label class="labels">Fecha:</label>
+           <p id="fecha"></p>
+           <div class="transaction-group">
+               <label for="transaction-amount">Monto:</label>
+               <input
+                  type="text"
+                  id="transaction-amount"
+                  name="transaction-amount"
+                />
+               <label for="transaction-reason">Razón:</label>
+               <textarea id="transaction-reason" name="transaction-reason"></textarea> 
+               <button class="submit-button" class="button" onclick="addTransaction('deposit')">Ingreso de dinero</button>
+               <button class="submit-button" class="button"onclick="addTransaction('withdraw')">Salida de dinero</button>
+          </div>
+          <div class="transaction-log" id="transaction-log"></div>
+    </div>  
+  </body>
+</html>

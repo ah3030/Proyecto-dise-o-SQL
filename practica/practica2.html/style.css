@@ -1,0 +1,78 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #9fd6be, #1a8d6b);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #008000;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 30px;
+    background-color: #167256;
+    outline: none;
+  }
+
+  .form-group input[type="text"]::placeholder,
+  .form-group input[type="password"]::placeholder {
+    color: #16725;
+  }
+
+  .form-group .icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+
+  .form-group .icon img {
+    width: 20px;
+  }
+
+  .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    
+    font-size: 100%;
+
+  }
+  .remenber-margin{
+    margin-left: 10%;
+  }
+
+  .button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 100%;
+    background-color: #fbfffb;
+    color: #16725;
+    text-decoration: none;
+    border-radius: 30px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+
+  .button:hover {
+    background-color: #167256;
+  }

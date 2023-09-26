@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pokédex</title>
+    <link rel="stylesheet" href="style1.css" />
+    <style>
+        /* Estilos para el modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 900;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pokédex</h1>
+    <input type="text" id="searchInput" placeholder="Buscar por nombre">
+    <button id="searchButton">Buscar</button>
+    <div id="pokemonContainer"></div>
+    <div class="overlay" id="overlay"></div>
+    <div class="modal" id="modal">
+        <button id="closeModal">Cerrar</button>
+        <div id="modalContent"></div>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+        const pokemonContainer = document.getElementById('pokemonContainer');
+        const overlay = document.getElementById('overlay');
+        const modal = document.getElementById('modal');
+        const modalContent = document.getElementById('modalContent');
+        const closeModal = document.getElementById('closeModal');
+
+        function loadPokemonData(pokemonName) {
+            fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
+                .then(response => response.json())
+                .then(data => {
+                    const pokemonImage = data.sprites.front_default;
+                    const pokemonName = data.name;
+                    const pokemonAbilities = data.abilities.map(ability => ability.ability.name).join(', ');
+
+                    // Nuevas propiedades obtenidas de la API
+                    const pokemonStats = data.stats.map(stat => `${stat.stat.name}: ${stat.base_stat}`).join(', ');
+                    const pokemonTypes = data.types.map(type => type.type.name).join(', ');
+                    const pokemonMoves = data.moves.map(move => move.move.name).slice(0, 5).join(', ');
+
+                    const pokemonInfo = `
+                        <div>
+                            <img src="${pokemonImage}" alt="${pokemonName}">
+                            <p><strong>Name:</strong> ${pokemonName}</p>
+                            <p><strong>Abilities:</strong> ${pokemonAbilities}</p>
+                            <p><strong>Stats:</strong> ${pokemonStats}</p>
+                            <p><strong>Types:</strong> ${pokemonTypes}</p>
+                            <p><strong>Moves:</strong> ${pokemonMoves}</p>
+                            <button class="showModalButton" data-name="${pokemonName}">Ver más</button>
+                        </div>
+                    `;
+
+                    pokemonContainer.innerHTML = pokemonInfo;
+
+                    const showModalButtons = document.querySelectorAll('.showModalButton');
+                    showModalButtons.forEach(button => {
+                        button.addEventListener('click', () => {
+                            const pokemonName = button.getAttribute('data-name');
+                            showPokemonModal(pokemonName);
+                        });
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    pokemonContainer.innerHTML = 'No se pudo cargar el Pokémon.';
+                });
+        }
+
+        function showPokemonModal(pokemonName) {
+            fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
+                .then(response => response.json())
+                .then(data => {
+                    const pokemonWeight = data.weight;
+                    const pokemonMoves = data.moves.map(move => move.move.name).join(', ');
+
+                    const modalContentHtml = `
+                        <h2>${pokemonName}</h2>
+                        <p><strong>Weight:</strong> ${pokemonWeight}</p>
+                        <p><strong>Moves:</strong> ${pokemonMoves}</p>
+                    `;
+
+                    modalContent.innerHTML = modalContentHtml;
+                    overlay.style.display = 'block';
+                    modal.style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+            overlay.style.display = 'none';
+        });
+
+        searchButton.addEventListener('click', () => {
+            const pokemonName = searchInput.value.toLowerCase();
+            loadPokemonData(pokemonName);
+        });
+
+    </script>
+</body>
+</html>``=-=-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="login-container">
+          <h2>Inicio de Sesión</h2>
+          <div class="form-group">
+            <label for="username">Usuario:</label>
+            <input type="text" id="username" name="username">
+          </div>
+          <div class="form-group">
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password">
+          </div>
+          <div class="form-group">
+            <label for="account-number">Número de Cuenta:</label>
+            <input type="text" id="account-number" name="account-number">
+          </div>
+          <button type="button" onclick="login()">Iniciar Sesión</button>
+        </div>
+      </div>
+    
+      <div class="container" id="account-container" style="display: none;">
+        <div class="account-container">
+          <h2>Cuenta Bancaria</h2>
+          <div class="balance" id="balance">Saldo: $0</div>
+          <div class="transaction-group">
+            <label for="transaction-amount">Monto:</label>
+            <input type="text" id="transaction-amount" name="transaction-amount">
+          </div>
+          <div class="transaction-group">
+            <label for="transaction-reason">Razón:</label>
+            <textarea id="transaction-reason" name="transaction-reason"></textarea>
+          </div>
+          <button class="submit-button" onclick="addTransaction('deposit')">Ingreso</button>
+          <button class="submit-button" onclick="addTransaction('withdraw')">Salida</button>
+          <div class="transaction-log" id="transaction-log"></div>
+        </div>
+      </div>
+</body>
+</html>

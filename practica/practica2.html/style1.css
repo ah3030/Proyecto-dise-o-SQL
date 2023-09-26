@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #9fd6be, #1a8d6b);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .account-container {
+    margin-top: 50px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 400px;
+  }
+
+  label{
+    color: #008000;
+    font-weight: bold;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 30px;
+    color: #008000;
+  }
+
+  .balance {
+    color: black;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    
+  }  
+
+  .transaction-group {
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  .transaction-group input[type="text"] {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .transaction-group textarea {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .transaction-group .submit-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+
+  .transaction-group .submit-button:hover {
+    background-color: #45a049;
+  }
+
+  .transaction-log {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: monospace;
+    background-color: #ffffff;
+    height: 200px;
+    overflow-y: auto;
+    width: 90%;
+  }
+
+  .transaction-log .transaction {
+    margin-bottom: 5px;
+  }
+
+  .transaction-log .transaction.negative {
+    color: red;
+  }
+
+  .transaction-log .transaction.positive {
+    color: black;
+  }

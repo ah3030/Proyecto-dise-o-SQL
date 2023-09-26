@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pokédex</title>
+    <link rel="stylesheet" href="style1.css" />
+</head>
+<body>
+    <h1>Pokédex</h1>
+    <input type="text" id="searchInput" placeholder="Buscar por nombre">
+    <button id="searchButton">Buscar</button>
+    <div id="pokemonContainer"></div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+        const pokemonContainer = document.getElementById('pokemonContainer');
+
+        function loadPokemonData(pokemonName) {
+            fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
+                .then(response => response.json())
+                .then(data => {
+                    const pokemonImage = data.sprites.front_default;
+                    const pokemonName = data.name;
+                    const pokemonAbilities = data.abilities.map(ability => ability.ability.name).join(', ');
+
+                    // Nuevas propiedades obtenidas de la API
+                    const pokemonStats = data.stats.map(stat => `${stat.stat.name}: ${stat.base_stat}`).join(', ');
+                    const pokemonTypes = data.types.map(type => type.type.name).join(', ');
+                    const pokemonMoves = data.moves.map(move => move.move.name).slice(0, 5).join(', ');
+
+                    const pokemonInfo = `
+                        <div>
+                            <img src="${pokemonImage}" alt="${pokemonName}">
+                            <p><strong>Name:</strong> ${pokemonName}</p>
+                            <p><strong>Abilities:</strong> ${pokemonAbilities}</p>
+                            <p><strong>Stats:</strong> ${pokemonStats}</p>
+                            <p><strong>Types:</strong> ${pokemonTypes}</p>
+                            <p><strong>Moves:</strong> ${pokemonMoves}</p>
+                        </div>
+                    `;
+
+                    pokemonContainer.innerHTML = pokemonInfo;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    pokemonContainer.innerHTML = 'No se pudo cargar el Pokémon.';
+                });
+        }
+        // Función para obtener sugerencias de búsqueda
+function getSuggestions(input) {
+    return fetch(`https://pokeapi.co/api/v2/pokemon/?limit=10&offset=0`)
+        .then(response => response.json())
+        .then(data => {
+            const suggestions = data.results.filter(pokemon => pokemon.name.includes(input.toLowerCase()));
+            return suggestions;
+        });
+}
+        searchButton.addEventListener('click', () => {
+            const pokemonName = searchInput.value.toLowerCase();
+            loadPokemonData(pokemonName);
+        });
+
+    
+    </script>
+</body>
+</html>
